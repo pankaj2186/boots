@@ -1,13 +1,208 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Page Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>Polaris Asset Selector</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script
+        src="https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/assets-selectors.js"></script>
+
+
+    <script>
+        const imsProps = {
+            // imsClientId: "ngdm_test_client",
+            imsClientId: "approvedassets-localhost-selector",
+            imsScope: "AdobeID,openid,read_organizations,additional_info.projectedProductContext,read_organizations",
+            redirectUrl: window.location.href,
+            modalMode: true,
+            // adobeImsOptions: {
+            //     modalSettings: {
+            //         allowOrigin: window.location.origin,
+            //     },
+            //     useLocalStorage: true,
+            // },
+            // onImsServiceInitialized: (service) => {
+            //     console.log("onImsServiceInitialized", service);
+            // },
+            // onAccessTokenReceived: (token) => {
+            //     console.log("onAccessTokenReceived", token);
+            // },
+            // onAccessTokenExpired: () => {
+            //     console.log("onAccessTokenError");
+            //     // re-trigger sign-in flow
+            // },
+            // onErrorReceived: (type, msg) => {
+            //     console.log("onErrorReceived", type, msg);
+            // }
+        };
+
+        function registerImsAuthService() {
+            const registeredTokenService = PureJSSelectors.registerAssetsSelectorsAuthService(imsProps);
+            imsInstance = registeredTokenService;
+        };
+
+        // Must be register token service before the selectors are rendered.
+        registerImsAuthService();
+
+        function onClose() {
+        }
+
+        function handleSelection(selection) {
+            console.log("Selected assets: " + selection)
+            onClose();
+        };
+
+        function handleNavigateToAsset(asset) {
+            // onClose();
+        }
+
+        async function renderAssetSelectorWithImsFlow() {
+            const assetSelectorProps = {
+                // "repositoryId": "delivery-p64502-e544757.adobeaemcloud.com",
+                // "repositoryId": "delivery-p64502-e544757.adobeaemcloud.com",
+                // "repositoryId": "delivery-p64502-e544757.adobeaemcloud.com",
+                // "repositoryId": "delivery-p67253-e153574-cmstg.adobeaemcloud.com",
+                // "repositoryId": "delivery-p106302-e1008170.adobeaemcloud.com",
+                // "repositoryId": "delivery-p56138-e410068.adobeaemcloud.com",
+                // p106302-e1008131 : reference demo shared
+                "repositoryId": "delivery-p137153-e1381162.adobeaemcloud.com",
+                "onClose": onClose,
+                "handleSelection": handleSelection,
+                hideTreeNav: true,
+                // apiKey: "polaris-asset-search-api-key",
+                filterSchema: [
+                    {
+                        header: 'File Type',
+                        groupKey: 'TopGroup',
+                        fields: [
+                            {
+                                element: 'checkbox',
+                                name: 'type',
+                                // name: 'property=metadata.repository.dc:format',
+                                options: [
+                                    {
+                                        label: 'Images',
+                                        value: 'image/*',
+                                    },
+                                    {
+                                        label: 'Videos',
+                                        value: 'video/*'
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        fields: [
+                            {
+                                element: 'checkbox',
+                                name: 'type',
+                                options: [
+                                    { label: 'JPG', value: 'image/jpeg' },
+                                    { label: 'PNG', value: 'image/png' },
+                                    { label: 'TIFF', value: 'image/tiff' },
+                                    { label: 'GIF', value: 'image/gif' },
+                                    { label: 'MP4', value: 'video/mp4' }
+                                ],
+                                columns: 3,
+                            },
+                        ],
+                        header: 'Mime Types',
+                        groupKey: 'MimeTypeGroup',
+                    },
+                    // ,
+                    // {
+                    //     fields: [
+                    //         {
+                    //             element: 'checkbox',
+                    //             name: 'property=metadata.repository.Country',
+                    //             options: [
+                    //                 { label: 'IND', value: 'India' },
+                    //                 { label: 'USA', value: 'USA' },
+                    //                 { label: 'AUS', value: 'Australia' }
+                    //             ],
+                    //             columns: 3,
+                    //         },
+                    //     ],
+                    //     header: 'Country',
+                    //     groupKey: 'CountryGroup',
+                    // },
+                    {
+                        fields: [
+                            {
+                                element: 'checkbox',
+                                name: 'property=metadata.embedded.photoshop:Country',
+                                options: [
+                                    { label: 'Thailan', value: 'Thailand' },
+                                    { label: 'USA', value: 'USA' },
+                                    { label: 'AUS', value: 'Australia' }
+                                ],
+                                columns: 3,
+                            },
+                        ],
+                        header: 'Country2',
+                        groupKey: 'CountryGroup2',
+                    }
+
+                    // ,
+                    // {
+                    //     fields: [
+                    //         {
+                    //             element: 'Number',
+                    //             name: 'property=metadata.embedded.tiff:ImageWidth',
+                    //             range: true,
+                    //             orientation: 'horizontal',
+                    //             quiet: true,
+                    //             label: "IMAGE WIDTH",
+                    //             hideArrows: true,
+                    //             columns: 2,
+                    //         },
+                    //         {
+                    //             element: 'Number',
+                    //             name: 'property=metadata.embedded.tiff:ImageHeight',
+                    //             range: true,
+                    //             orientation: 'horizontal',
+                    //             quiet: true,
+                    //             label: "IMAGE HEIGHT",
+                    //             hideArrows: true,
+                    //             columns: 2,
+                    //         },
+                    //     ],
+                    //     header: "IMAGE SIZE HEADER",
+                    //     groupKey: 'SizeGroup',
+                    // }
+
+                ]
+            }
+
+            // Get the container element where the asset selector will be rendered.
+            const container = document.getElementById('asset-selector');
+
+
+            PureJSSelectors.renderAssetSelectorWithAuthFlow(container, assetSelectorProps);
+        }
+
+        async function logoutImsFlow() {
+            console.log("Signing out...", imsInstance);
+            await imsInstance.signOut();
+        }
+
+        $(document).ready(function () {
+            renderAssetSelectorWithImsFlow();
+        });
+
+    </script>
 </head>
-<body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
+<body class="asset-selectors">
+    <div>
+        <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px;">
+        </div>
+    </div>
 </body>
-</html>
 
+</html>
