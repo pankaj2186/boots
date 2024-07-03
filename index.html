@@ -19,25 +19,25 @@
             imsScope: "AdobeID,openid,read_organizations,additional_info.projectedProductContext,read_organizations",
             redirectUrl: window.location.href,
             modalMode: true,
-            // adobeImsOptions: {
-            //     modalSettings: {
-            //         allowOrigin: window.location.origin,
-            //     },
-            //     useLocalStorage: true,
-            // },
-            // onImsServiceInitialized: (service) => {
-            //     console.log("onImsServiceInitialized", service);
-            // },
-            // onAccessTokenReceived: (token) => {
-            //     console.log("onAccessTokenReceived", token);
-            // },
-            // onAccessTokenExpired: () => {
-            //     console.log("onAccessTokenError");
-            //     // re-trigger sign-in flow
-            // },
-            // onErrorReceived: (type, msg) => {
-            //     console.log("onErrorReceived", type, msg);
-            // }
+            adobeImsOptions: {
+               modalSettings: {
+                  allowOrigin: window.location.origin,
+              },
+                 useLocalStorage: true,
+             },
+            onImsServiceInitialized: (service) => {
+                console.log("onImsServiceInitialized", service);
+            },
+            onAccessTokenReceived: (token) => {
+                console.log("onAccessTokenReceived", token);
+             },
+            onAccessTokenExpired: () => {
+                 console.log("onAccessTokenError");
+                 // re-trigger sign-in flow
+             },
+            onErrorReceived: (type, msg) => {
+                 console.log("onErrorReceived", type, msg);
+             }
         };
 
         function registerImsAuthService() {
