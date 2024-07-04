@@ -181,7 +181,7 @@
 
             // Get the container element where the asset selector will be rendered.
             const container = document.getElementById('asset-selector');
-
+            container.style.display = 'block';
 
             PureJSSelectors.renderAssetSelectorWithAuthFlow(container, assetSelectorProps);
         }
@@ -204,10 +204,11 @@
 
 <body class="asset-selectors">
     <div>
-        <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px;">
+        <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px; display:none;">
         </div>
-        <button onclick="selectAsset()" type="button" title="Select Asset" aria-label="Select Asset"></button>
-
+        <button onclick="selectAsset()" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+            Select Asset
+        </button>
     </div>
 </body>
 
