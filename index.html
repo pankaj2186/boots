@@ -192,9 +192,13 @@
         }
 
         $(document).ready(function () {
-            renderAssetSelectorWithImsFlow();
-        });
+            //renderAssetSelectorWithImsFlow();
 
+            
+        });
+        function prevSlide() {
+                selectAsset();
+        }
     </script>
 </head>
 
@@ -202,6 +206,8 @@
     <div>
         <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px;">
         </div>
+        <button onclick="selectAsset()" type="button" title="Select Asset" aria-label="Select Asset"></button>
+
     </div>
 </body>
 
