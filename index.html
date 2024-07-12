@@ -50,10 +50,12 @@
 
         function onClose() {
             document.getElementById('asset-selector').style.display = 'none';
+            //show the main container here.
         }
 
         function handleSelection(selection) {
-            console.log("Selected assets: " + selection)
+            console.log("Selected assets: " + selection);
+            //selection has image path. set it to image src.
             onClose();
         };
 
@@ -205,11 +207,13 @@
 
 <body class="asset-selectors">
     <div>
-        <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px; display:none;">
-        </div>
-        <button onclick="selectAsset()" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
-            Select Asset
-        </button>
+        <div class="container" style="background-image-here">
+            <button onclick="selectAsset()" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+                Select Asset
+            </button>
+        </div>        
+    </div>
+    <div id="asset-selector" style="height: calc(100vh - 80px); width: calc(100vw - 60px); margin:2px; display:none;">
     </div>
 </body>
 
