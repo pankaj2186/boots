@@ -80,10 +80,10 @@
         registerImsAuthService();
 
         function onClose() {
-            document.getElementById('asset-selector').style.display = 'none';
             //show the main container here.
             document.getElementsByClassName("select-asset-container")[0].style.display = 'block';
             document.getElementByTagName("select-asset-img").style.display = 'block';
+            document.getElementById('asset-selector').style.display = 'none';
         }
 
         function handleSelection(selection) {
