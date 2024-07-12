@@ -82,13 +82,13 @@
         function onClose() {
             //show the main container here.
             document.getElementsByClassName("select-asset-container")[0].style.display = 'block';
-            document.getElementByTagName("select-asset-img").style.display = 'block';
+            document.getElementsByClassName("select-asset-img")[0].style.display = 'block';
             document.getElementById('asset-selector').style.display = 'none';
         }
 
         function handleSelection(selection) {
             console.log("Selected assets: " + selection);
-            document.getElementByTagName("select-asset-img").src = selection[0]._links["http://ns.adobe.com/adobecloud/rel/rendition"].href; 
+            document.getElementsByClassName("select-asset-img")[0].src = selection[0]._links["http://ns.adobe.com/adobecloud/rel/rendition"].href; 
             //selection has image path. set it to image src.
             onClose();
         };
@@ -247,7 +247,7 @@
 
 <body class="asset-selectors">
     <div>
-        <div class="container select-asset-container" style="background:url('https://publish-p137153-e1381162.adobeaemcloud.com/content/dam/boots/images/salesforce-commerce-cloud.png')">
+        <div class="container select-asset-container" style="background-image:url('https://publish-p137153-e1381162.adobeaemcloud.com/content/dam/boots/images/salesforce-commerce-cloud.png')">
             <img src="" class="select-asset-img" />
             <button onclick="selectAsset()" class="select-asset-btn">
                 Select Asset
