@@ -18,6 +18,7 @@
             background-size:cover;
             background-repeat:no-repeat;
             background-position:center;
+            position:relative;
         }
         .select-asset-btn {
             background-color: #007bff;
@@ -31,6 +32,14 @@
             position: absolute;
             bottom: 50px;
             left: 200px;
+        }
+        .select-asset-img {
+            display:none;
+            width:auto;
+            height:auto;
+            position:absolute;
+            bottom: 70px;
+            left: 50px;
         }
     </style>
 
@@ -73,10 +82,13 @@
         function onClose() {
             document.getElementById('asset-selector').style.display = 'none';
             //show the main container here.
+            document.getElementsByClassName("select-asset-container")[0].style.display = 'block';
+            document.getElementByTagName("select-asset-img").style.display = 'block';
         }
 
         function handleSelection(selection) {
             console.log("Selected assets: " + selection);
+            document.getElementByTagName("select-asset-img").src = selection[0]._links["http://ns.adobe.com/adobecloud/rel/rendition"].href; 
             //selection has image path. set it to image src.
             onClose();
         };
@@ -86,6 +98,9 @@
         }
 
         async function renderAssetSelectorWithImsFlow() {
+
+            
+            
             const assetSelectorProps = {
                 // "repositoryId": "delivery-p64502-e544757.adobeaemcloud.com",
                 // "repositoryId": "delivery-p64502-e544757.adobeaemcloud.com",
@@ -204,6 +219,9 @@
                 ]
             }
 
+            
+            document.getElementsByClassName("select-asset-container")[0].style.display = 'none';
+            
             // Get the container element where the asset selector will be rendered.
             const container = document.getElementById('asset-selector');
             container.style.display = 'block';
@@ -230,6 +248,7 @@
 <body class="asset-selectors">
     <div>
         <div class="container select-asset-container" style="background:url('https://publish-p137153-e1381162.adobeaemcloud.com/content/dam/boots/images/salesforce-commerce-cloud.png')">
+            <img src="" class="select-asset-img" />
             <button onclick="selectAsset()" class="select-asset-btn">
                 Select Asset
             </button>
