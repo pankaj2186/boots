@@ -12,12 +12,25 @@
         src="https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/assets-selectors.js"></script>
 
     <style>
-        .select-asset {
+        .select-asset-container {
             width:100%;
             height:100vh;
             background-size:cover;
             background-repeat:no-repeat;
             background-position:center;
+        }
+        .select-asset-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            position: absolute;
+            bottom: 50px;
+            left: 200px;
         }
     </style>
 
@@ -216,8 +229,8 @@
 
 <body class="asset-selectors">
     <div>
-        <div class="container select-asset" style="background:url('https://publish-p137153-e1381162.adobeaemcloud.com/content/dam/boots/images/salesforce-commerce-cloud.png')">
-            <button onclick="selectAsset()" style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+        <div class="container select-asset-container" style="background:url('https://publish-p137153-e1381162.adobeaemcloud.com/content/dam/boots/images/salesforce-commerce-cloud.png')">
+            <button onclick="selectAsset()" class="select-asset-btn">
                 Select Asset
             </button>
         </div>        
